@@ -1,0 +1,14 @@
+target/
+*.class
+.settings/
+.classpath
+.project
+.idea/
+*.iml
+*.iws
+.DS_Store
+active_checks.json
+history.json
+locations.yml
+lang/
+config.yml

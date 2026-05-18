@@ -1,0 +1,11 @@
+name: kCheatCheck
+version: '${project.version}'
+main: com.kitamor.kcheatcheck.KCheatCheck
+api-version: '1.13'
+softdepend: [PlaceholderAPI]
+description: PvP Servers Cheat Check Plugin
+author: altug
+commands:
+  kont:
+    description: Ana kontrol komutu
+    aliases: [kontrol]
