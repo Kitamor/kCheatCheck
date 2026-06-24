@@ -187,8 +187,20 @@ public class KontCommand implements CommandExecutor, TabCompleter {
 
             String message = String.join(" ", Arrays.copyOfRange(args, 2, args.length));
             String formatted = getMsg("chat_format_staff").replace("{player}", sender.getName()).replace("{message}", message);
-            sender.sendMessage(formatted);
             target.sendMessage(formatted);
+            
+            if (!(sender instanceof Player)) {
+                sender.sendMessage(formatted);
+            }
+            
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                if (p.getUniqueId().equals(target.getUniqueId())) {
+                    continue;
+                }
+                if (p.hasPermission("kcheatcheck.admin") || (sender instanceof Player && p.getUniqueId().equals(((Player) sender).getUniqueId()))) {
+                    p.sendMessage(formatted);
+                }
+            }
 
         } else if (subCommand.equalsIgnoreCase(cmdBitir)) {
             if (args.length < 3) {
