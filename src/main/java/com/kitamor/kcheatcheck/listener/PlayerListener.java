@@ -103,14 +103,12 @@ public class PlayerListener implements Listener {
             player.sendMessage(formatted);
             
             String staffName = plugin.getCheckManager().getCheckingStaff(player.getUniqueId());
-            Player staff = Bukkit.getPlayer(staffName);
-            if (staff != null && staff.isOnline()) {
-                staff.sendMessage(formatted);
-            } else {
-                for (Player p : Bukkit.getOnlinePlayers()) {
-                    if (p.hasPermission("kcheatcheck.admin")) {
-                        p.sendMessage(ColorUtil.color("&c[kCheatCheck] &e" + player.getName() + " (Kontrolde) &8> &f" + msg));
-                    }
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                if (p.getUniqueId().equals(player.getUniqueId())) {
+                    continue;
+                }
+                if (p.hasPermission("kcheatcheck.admin") || p.getName().equalsIgnoreCase(staffName)) {
+                    p.sendMessage(formatted);
                 }
             }
         }
